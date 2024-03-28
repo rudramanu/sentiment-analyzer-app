@@ -51,7 +51,6 @@ def main():
     #   print("Analyzer",analyzer)
       score=analyzer.polarity_scores(comment)
       print(score)
-      return score
       #  {'neg': 0.279, 'neu': 0.604, 'pos': 0.118, 'compound': -0.395}
       #  here compound value is aggregation  of negative, positive and neutral. it is the value of negative one to positive one, and represent how negative to positive it is.
       negative_percentage = "{:.2f}%".format(score['neg'] * 100)
