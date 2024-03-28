@@ -39,6 +39,7 @@ def main():
       comment=request.form.get("comment")
     #   robertaScore=get_sentiment_score_roberta_model(comment)
     #   print(robertaScore)
+      return comment
       print(comment)
       tokens=nltk.word_tokenize(comment)
       print(tokens)
@@ -68,7 +69,6 @@ def main():
           colour="blue"
     return render_template("index.html", negative_percentage=negative_percentage, neutral_percentage=neutral_percentage, positive_percentage=positive_percentage, overall_percentage=overall_percentage, sentiment=sentiment, colour=colour)   
   except Exception as e:
-     print(f"Error processing sentiment: {e}")   
      return "An error occurred while processing the sentiment analysis.", 500
 
 if __name__ == '__main__':
