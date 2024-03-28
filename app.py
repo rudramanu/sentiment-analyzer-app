@@ -39,12 +39,11 @@ def main():
       comment=request.form.get("comment")
     #   robertaScore=get_sentiment_score_roberta_model(comment)
     #   print(robertaScore)
-      print(comment)
-      tokens=nltk.word_tokenize(comment)
-      print(tokens)
-      return tokens
-      tagged=nltk.pos_tag(tokens)
-      print(tagged)
+      # print(comment)
+      # tokens=nltk.word_tokenize(comment)
+      # print(tokens)
+      # tagged=nltk.pos_tag(tokens)
+      # print(tagged)
       
       analyzer=SentimentIntensityAnalyzer()
       #  SentimentIntensityAnalyzer is used to get neg/neu/pos score. This used to remove "stop words(the words that dont have positive or negative feeling such as and, the etc)" and then each words are scored and combined to a total score
@@ -52,6 +51,7 @@ def main():
     #   print("Analyzer",analyzer)
       score=analyzer.polarity_scores(comment)
       print(score)
+      return score
       #  {'neg': 0.279, 'neu': 0.604, 'pos': 0.118, 'compound': -0.395}
       #  here compound value is aggregation  of negative, positive and neutral. it is the value of negative one to positive one, and represent how negative to positive it is.
       negative_percentage = "{:.2f}%".format(score['neg'] * 100)
