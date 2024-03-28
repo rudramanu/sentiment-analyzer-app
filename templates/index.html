@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentiment Analyzer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pyscript.net/releases/2024.1.1/core.css"
+    />
+    <script
+      type="module"
+      src="https://pyscript.net/releases/2024.1.1/core.js"
+    ></script>
+    <style>
+      .custom-textarea {
+        margin-bottom: 10px;
+        border-color: black;
+      }
+      .img{
+        width: 50px;
+      }
+      .img-div{
+        text-align: center;
+      }
+      #logo{
+        color: rgb(4, 128, 142);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" id="logo">Sentiment Analyzer</a>
+        <div class="d-flex" role="search">
+          <input class="form-control me-2" placeholder="Dummy Search" aria-label="Search">
+          <button class="btn btn-outline-success">Search</button>
+        </div>
+      </div>
+    </nav>
+    <hr>
+    
+    <figure class="text-center">
+      <blockquote class="blockquote">
+        <h2>Welcome to Sentiment Analyzer Application</h2>
+      </blockquote>
+      <blockquote class="blockquote">
+        <p>Please enter the text you want to analyze !!</p>
+      </blockquote>
+    </figure>
+
+    <center>
+      <form action="" method="POST">
+        <textarea
+          class="form-control custom-textarea"
+          placeholder="Write a comment here"
+          style="height: 120px; width: 300px"
+          id="comment"
+          name="comment"
+          required
+        ></textarea>
+        <input type="submit" name="submit" class="btn btn-warning" id="submitBtn"></input>
+      </form>
+    </center>
+    <hr>
+    <div style="width: 70%;margin: auto;">
+      <p style="text-align: center;">Sentiment Score : <span style="font-size: 20px;font-weight: 700;color: {{colour}};">{{sentiment}}</span></p>
+      <div style="margin: 0 25px 25px;">
+        <div class="progress" role="progressbar" aria-label="Animated striped example" aria-current="{{overall_percentage}}%" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" style="background-color: {{colour}};width: {{overall_percentage}}%">{{overall_percentage}}%</div>
+        </div>
+      </div>
+      <hr>
+      <div style="display: flex; justify-content: space-around;">
+        <div class="img-div">
+          <img src="https://cdn-icons-png.flaticon.com/512/742/742923.png" class="img">
+          <p>Positive</p>
+          <h3>{{positive_percentage}}</h3>
+        </div>
+        <div class="img-div">
+          <img src="https://cdn-icons-png.flaticon.com/128/8265/8265420.png" class="img">
+          <p>Neutral</p>
+          <h3>{{neutral_percentage}}</h3>
+        </div>
+        <div class="img-div">
+          <img src="https://cdn-icons-png.flaticon.com/128/743/743419.png" class="img">
+          <p>Negative</p>
+          <h3>{{negative_percentage}}</h3>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <footer style="margin-top: 30px;">
+      <p class="text-center text-body-secondary">© 2024 | Made by Rudra Manu</p>
+    </footer>
+  </body>
+</html>
