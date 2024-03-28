@@ -39,10 +39,10 @@ def main():
       comment=request.form.get("comment")
     #   robertaScore=get_sentiment_score_roberta_model(comment)
     #   print(robertaScore)
-      return comment
       print(comment)
       tokens=nltk.word_tokenize(comment)
       print(tokens)
+      return tokens
       tagged=nltk.pos_tag(tokens)
       print(tagged)
       
