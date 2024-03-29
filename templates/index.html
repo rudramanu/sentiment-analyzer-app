@@ -92,7 +92,8 @@
         <h3>Entities and Sentiments:</h3>
         <ul>
           {% for entity, sentiment in entities %}
-          <li>{{ entity }} ({{ sentiment }})</li>
+          <li><strong>{{ entity }}</strong> [Sentiment: <span style="color: blue">{{ sentiment }}</span>]</li>
+
           {% endfor %}
         </ul>
       </div>
@@ -100,7 +101,8 @@
         <h3>Attributes and Sentiments:</h3>
         <ul>
           {% for attribute, sentiment in attributes %}
-          <li>{{ attribute }} ({{ sentiment }})</li>
+          <li><strong>{{ attribute }}</strong> [Sentiment: <span style="color:brown">{{ sentiment }}</span>]</li>
+
           {% endfor %}
         </ul>
       </div>
