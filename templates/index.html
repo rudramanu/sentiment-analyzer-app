@@ -97,6 +97,25 @@
       </div>
     </div>
     <hr>
+    <div style="display: flex; justify-content: space-around; ">
+      <div style="width: 50%; padding: 20px;">
+        <h3>Entities and Sentiments:</h3>
+        <ul>
+          {% for entity, sentiment in entities %}
+          <li>{{ entity }} ({{ sentiment }})</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div style="width: 50%;border-left: 2px solid rgb(0, 8, 0);padding: 20px;">
+        <h3>Attributes and Sentiments:</h3>
+        <ul>
+          {% for attribute, sentiment in attributes %}
+          <li>{{ attribute }} ({{ sentiment }})</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>    
+    <hr>
     <footer style="margin-top: 30px;">
       <p class="text-center text-body-secondary">© 2024 | Made by Rudra Manu</p>
     </footer>
