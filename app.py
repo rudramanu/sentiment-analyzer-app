@@ -3,49 +3,58 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk import pos_tag
 import nltk
+
 nltk.download("vader_lexicon")
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
 app = Flask(__name__)
 
+
 def extract_sentiments(text):
-    print(text)
     entities = []
     attributes = []
 
-    # Tokenize the text into sentences
-    sentences = sent_tokenize(text)
-    print(sentences)
-    
-    # Initialize SentimentIntensityAnalyzer
+    # Split text into sentences using regular expressions
+    sentences = text.split(".")
+    # print("splitted", sentences)
     analyzer = SentimentIntensityAnalyzer()
 
     for sentence in sentences:
         # Tokenize the sentence into words and get Part-of-Speech tags
         words = word_tokenize(sentence)
-        print(words)
         tagged_words = pos_tag(words)
-        print(tagged_words)
 
         # Initialize lists to store entities and attributes in the current sentence
         current_entities = []
-        current_attributes = []
+        current_attribute = []
 
-        # Iterate through the tagged words to extract entities and attributes
         for word, tag in tagged_words:
-            if tag.startswith('NN') or tag == 'PRP':  # Nouns or pronouns
+            # print(word)
+            if tag.startswith('NN') or tag == 'PRP':
                 sentiment_score = analyzer.polarity_scores(word)
                 current_entities.append((word, sentiment_score))
-            elif tag.startswith('JJ'):  # Adjectives
+                if current_attribute:
+                    attributes.append((' '.join(current_attribute), current_attribute_sentiment))
+                    current_attribute = []
+            elif tag.startswith('JJ'):  
                 sentiment_score = analyzer.polarity_scores(word)
-                current_attributes.append((word, sentiment_score))
+                if current_attribute:
+                    current_attribute.append(word)
+                else:
+                    current_attribute = [word]
+                current_attribute_sentiment = sentiment_score
+            else:
+                if current_attribute:
+                    attributes.append((' '.join(current_attribute), current_attribute_sentiment))
+                    current_attribute = []
 
-        # Add entities and attributes of the current sentence to the overall lists
         entities.extend(current_entities)
-        attributes.extend(current_attributes)
+        if current_attribute:
+            attributes.append((' '.join(current_attribute), current_attribute_sentiment))
 
     return entities, attributes
+
 
 @app.route("/", methods=["GET", "POST"])
 def main():
